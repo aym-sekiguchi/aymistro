@@ -1,0 +1,12 @@
+{
+  "experimentalOperatorPosition:": "start",
+  "htmlWhitespaceSensitivity": "ignore",
+  "jsxSingleQuote": true,
+  "plugins": [
+    "prettier-plugin-tailwindcss",
+    "prettier-plugin-packagejson",
+    "prettier-plugin-sort-json"
+  ],
+  "semi": false,
+  "singleQuote": true
+}

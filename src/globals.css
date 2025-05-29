@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --font-serif: var(--font-zen-old-mincho);
+  --font-sans: var(--font-noto-sans-jp);
+}
+
+body {
+  @apply font-sans;
+}
