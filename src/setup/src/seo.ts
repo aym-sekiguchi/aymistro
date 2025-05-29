@@ -44,6 +44,17 @@ export function createMetadata(options: CreateMetadataOptions = {}): Metadata {
 
   return {
     description,
+    icons: {
+      apple: '/icons/apple-touch-icon.png',
+      other: [
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          url: '/icon.svg',
+        },
+      ],
+    },
+    manifest: '/manifest.json',
     openGraph: {
       description,
       images: [
