@@ -1,4 +1,5 @@
 # Custom Dictionary Words
+Aymistro
 Kaku
 Mincho
 noto
