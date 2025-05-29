@@ -50,7 +50,7 @@ export function createMetadata(options: CreateMetadataOptions = {}): Metadata {
         {
           rel: 'icon',
           type: 'image/svg+xml',
-          url: '/icon.svg',
+          url: '/icons/icon.svg',
         },
       ],
     },
