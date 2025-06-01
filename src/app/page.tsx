@@ -19,11 +19,13 @@ export default async function Home(): Promise<JSX.Element> {
 
         const { created_time: createdTime, description, id, tags, title } = post
         return (
-          <p key={post.id}>
-            {title} | {createdTime} | {description || '説明'} | {id} |{' '}
-            {tags.map((tag) => (
-              <span key={`${id}-tag-${tag.name}`}>{tag.name}</span>
-            ))}
+          <p key={id}>
+            <a href={`/${id}`}>
+              {title} | {createdTime} | {description || '説明'} | {id} |{' '}
+              {tags.map((tag) => (
+                <span key={`${id}-tag-${tag.name}`}>{tag.name}</span>
+              ))}
+            </a>
           </p>
         )
       })}

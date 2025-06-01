@@ -5,6 +5,8 @@
   --font-sans: var(--font-noto-sans-jp);
 }
 
-body {
-  @apply font-sans;
+@layer base {
+  body {
+    @apply font-sans;
+  }
 }
