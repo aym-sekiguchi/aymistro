@@ -35,14 +35,12 @@ export async function PostContents(props: {
           remarkPlugins={[remarkGfm]}
           components={{
             a({ children, href }) {
-              console.log(children)
               if (
                 children === 'video' &&
                 (href?.includes('youtube.com') || href?.includes('youtu.be'))
               ) {
                 // YouTube埋め込みURLに変換
                 const videoId = extractYouTubeId(href)
-                console.log('YouTube videoId:', videoId)
                 if (videoId) {
                   return (
                     <iframe
