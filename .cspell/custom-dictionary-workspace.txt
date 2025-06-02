@@ -5,3 +5,4 @@ Mincho
 noto
 proptypes
 turbopack
+notionhq

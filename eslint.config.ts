@@ -221,6 +221,7 @@ export default [
     ...react.configs['recommended-type-checked'],
     rules: {
       ...react.configs['recommended-type-checked'].rules,
+      '@eslint-react/dom/no-missing-iframe-sandbox': 'off', // iframeのsandbox属性が欠落している場合に警告
       '@eslint-react/jsx-no-duplicate-props': 'warn', // JSX内での重複プロパティを警告
       '@eslint-react/jsx-no-undef': 'warn', // JSX内で未定義の変数を警告
       '@eslint-react/jsx-uses-vars': 'warn', // JSX内で使用されている変数を警告
