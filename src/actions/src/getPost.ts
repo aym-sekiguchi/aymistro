@@ -28,32 +28,53 @@ export const getPost = cache(async (options: { id: string }) => {
     const _mdBlocks = await Promise.all(
       mdBlocks.map(async (block) => {
         const result = { ...block }
+
+        // link_to_pageブロックでなければそのまま返す
         if (!(block.type === 'link_to_page')) return result
-        console.log(block.parent)
+
+        // link_to_pageブロックからURLを取得
         const parent = block.parent
         const match = parent.match(/\((https?:\/\/[^)]+)\)/)
         const url = match ? match[1] : null
+
+        // URLがなければそのまま返す
         if (!url) return result
+
+        // URLからリンクページのIDを取得
         const linkPageId = url.replace('https://www.notion.so/', '')
+
+        // IDからリンクページのデータを取得
         const linkPages = await notion.pages.retrieve({
           page_id: linkPageId,
         })
+
+        // リンクページのデータの型があわない場合は処理を終了
         if (!isFullPage(linkPages)) return
+
+        // リンクページタイトルを取得
         const linkPageTitle = TitleProperty(linkPages.properties.Title)
           ? linkPages.properties.Title.title[0]['plain_text']
           : 'No Title'
+
+        // リンクページのタイトルでデータを更新
         result.parent = `[${linkPageTitle}](${url})`
+
+        // 更新したデータを返す
         return result
       }),
     )
+
+    // マークダウン文字列に変換
     const mdString = n2m.toMarkdownString(
       _mdBlocks.filter((block) => block !== undefined),
     )
 
+    // ページのタイトルを取得
     const title = TitleProperty(pages.properties.Title)
       ? pages.properties.Title.title[0].plain_text
       : 'No Title'
 
+    // ページの説明を取得
     const description = DescriptionProperty(pages.properties.Description)
       ? pages.properties.Description.rich_text[0].plain_text
       : 'No Description'
