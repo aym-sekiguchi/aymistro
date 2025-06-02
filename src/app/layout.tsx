@@ -1,5 +1,5 @@
 import { Footer, Header } from '@/components'
-import { createMetadata, notoSansJP, zenOldMincho } from '@/setup'
+import { createMetadata, KaiseiDecol, notoSansJP, zenOldMincho } from '@/setup'
 
 import '../globals.css'
 
@@ -17,7 +17,7 @@ export default function RootLayout(props: RootLayoutProps): React.ReactNode {
   return (
     <html
       lang='ja'
-      className={`${zenOldMincho.variable} ${notoSansJP.variable} antialiased`}
+      className={`${zenOldMincho.variable} ${notoSansJP.variable} ${KaiseiDecol.variable} antialiased`}
     >
       {/* body */}
       <body className='flex min-h-svh flex-col'>
