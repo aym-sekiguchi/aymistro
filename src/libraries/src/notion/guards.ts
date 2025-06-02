@@ -18,10 +18,17 @@ export function TitleProperty(prop: { [key: string]: unknown }): prop is {
   return prop.type === 'title'
 }
 
-export function DescriptionProperty(prop: { [key: string]: unknown }): prop is {
+export function DescriptionProperty(prop: {
+  [key: string]: unknown
+  rich_text?: Record<string, unknown>[]
+}): prop is {
   id: string
   rich_text: Array<TextRichTextItemResponse>
   type: 'rich_text'
 } {
-  return prop.type === 'rich_text'
+  return (
+    prop.type === 'rich_text' &&
+    prop.rich_text !== undefined &&
+    prop.rich_text.length > 0
+  )
 }
