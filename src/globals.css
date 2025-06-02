@@ -3,9 +3,14 @@
 @theme inline {
   --font-serif: var(--font-zen-old-mincho);
   --font-sans: var(--font-noto-sans-jp);
+  --font-kaisei-decol: var(--font-kaisei-decol);
+  --color-black: '#441800';
 }
 
 @layer base {
+  html {
+    @apply bg-[#fefbef] text-[#441800];
+  }
   body {
     @apply font-sans;
   }
