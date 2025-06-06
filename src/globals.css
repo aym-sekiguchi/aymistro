@@ -4,7 +4,8 @@
   --font-serif: var(--font-zen-old-mincho);
   --font-sans: var(--font-noto-sans-jp);
   --font-kaisei-decol: var(--font-kaisei-decol);
-  --color-black: '#441800';
+  --color-black: #441800;
+  --color-primary: #a31c00;
 }
 
 @layer base {
@@ -13,5 +14,19 @@
   }
   body {
     @apply font-sans;
+  }
+}
+
+@layer utilities {
+  .shadow-notepad {
+    box-shadow:
+      6px 6px 6px -6px rgba(0, 0, 0, 0.1),
+      6px 6px 6px -6px rgba(0, 0, 0, 0.1);
+  }
+  .notepad-hover:hover {
+    transform: perspective(2000px) rotateX(-10deg) skewX(-10deg);
+  }
+  .notepad-detail * {
+    line-height: 46px !important;
   }
 }
