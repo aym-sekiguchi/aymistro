@@ -7,11 +7,16 @@ import type { JSX } from 'react'
 
 /**
  *
- * コンポーネントのテンプレートです。
+ * フィルターコンポーネント
  *
- * このファイルをコピーして使ってください。
+ * @description
+ * - 検索とタグフィルタリング機能を提供
+ * - 折りたたみ可能なアコーディオン形式のUI
+ * - SearchBarとTagSelectorを内包
+ * - ユーザーの操作で表示/非表示を切り替え可能
  *
- * @param props - props.children: JSX.Element
+ * @param props - props.tags: 利用可能なタグの配列
+ * @returns {JSX.Element} フィルター機能を含むアコーディオンコンポーネント
  *
  */
 
