@@ -225,6 +225,7 @@ export default [
       '@eslint-react/jsx-no-duplicate-props': 'warn', // JSX内での重複プロパティを警告
       '@eslint-react/jsx-no-undef': 'warn', // JSX内で未定義の変数を警告
       '@eslint-react/jsx-uses-vars': 'warn', // JSX内で使用されている変数を警告
+      '@eslint-react/no-unstable-context-value': 'off', // unstableなcontext valueの使用を警告
       '@eslint-react/no-useless-fragment': 'warn', // 不要なフラグメントを警告
     },
   },

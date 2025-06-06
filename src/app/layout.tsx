@@ -25,7 +25,9 @@ export default function RootLayout(props: RootLayoutProps): React.ReactNode {
         <Header />
 
         {/* main */}
-        <main className='flex-1 p-4'>{children}</main>
+        <main className='mx-auto w-full max-w-4xl flex-1 p-4 pb-10'>
+          {children}
+        </main>
 
         {/* footer */}
         <Footer />
