@@ -1,16 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import {
-  createContext,
-  type Dispatch,
-  type JSX,
-  type SetStateAction,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import { type JSX, useCallback, useEffect, useRef, useState } from 'react'
 
 import { getPostList } from '@/actions'
 import { ListContext } from '@/contexts'
