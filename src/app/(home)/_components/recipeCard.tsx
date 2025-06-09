@@ -58,7 +58,7 @@ export function RecipeCard(
 
       {/* 表紙 */}
       <Link
-        href={`posts/${id}`}
+        href={`/${id}`}
         className='font-kaisei-decol shadow-notepad notepad-hover relative flex min-h-46.25 origin-top-right flex-col items-center gap-2 rounded-xl px-4 py-2 transition duration-500'
         style={{
           backgroundImage: 'url(/images/recipe-card-cover.webp)',
