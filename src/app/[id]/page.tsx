@@ -4,6 +4,7 @@ import { type JSX, Suspense } from 'react'
 import { getPost } from '@/actions'
 import { createMetadata } from '@/setup'
 
+import { BackToListButton } from './_components/backToListButton'
 import { PostDetailServer } from './_components/postDetailServer'
 
 import type { Metadata } from 'next'
@@ -46,8 +47,11 @@ export default async function Page(props: PageProps): Promise<JSX.Element> {
 
   /* === return === */
   return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <PostDetailServer id={id} />
-    </Suspense>
+    <>
+      <BackToListButton />
+      <Suspense fallback={<p>Loading...</p>}>
+        <PostDetailServer id={id} />
+      </Suspense>
+    </>
   )
 }
