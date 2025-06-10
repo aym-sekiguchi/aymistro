@@ -6,6 +6,7 @@ import { createMetadata } from '@/setup'
 
 import { BackToListButton } from './_components/backToListButton'
 import { PostDetailServer } from './_components/postDetailServer'
+import { RecipePageSkeleton } from './_components/recipePageskeleton'
 import { RefreshPostButton } from './_components/refreshPostButton'
 
 import type { Metadata } from 'next'
@@ -50,7 +51,7 @@ export default async function Page(props: PageProps): Promise<JSX.Element> {
   return (
     <>
       <BackToListButton />
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<RecipePageSkeleton />}>
         <PostDetailServer id={id} />
       </Suspense>
       <RefreshPostButton id={id} />

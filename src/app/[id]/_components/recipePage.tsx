@@ -39,15 +39,11 @@ export function RecipePage(props: recipePage): JSX.Element {
   /* === return === */
   return (
     <div className='relative mt-4 h-fit'>
-      {/* カード効果のための背景レイヤー */}
-      <div className='shadow-notepad absolute top-0.5 left-0.5 z-300 h-full w-full rounded-xl bg-white' />
-      <div className='shadow-notepad absolute top-1 left-1 z-200 h-full w-full rounded-xl bg-white' />
-      <div className='shadow-notepad absolute top-1.5 left-1.5 z-100 h-full w-full rounded-xl bg-[url(/images/recipe-card-cover.webp)]' />
+      <CardShadowLayers />
 
       {/* 内容 */}
       <div className='shadow-notepad relative z-400 rounded-xl bg-white p-4 md:p-8'>
-        {/* リング */}
-        <div className='relative -mt-10 mb-10 h-8 w-full bg-[url(/images/recipe-card-ring.svg)] bg-contain bg-repeat-space' />
+        <NotePadRing />
 
         {/* タイトル */}
         <h2 className='font-kaisei-decol border-b border-dashed pb-2 text-center text-2xl md:text-3xl'>
@@ -80,14 +76,7 @@ export function RecipePage(props: recipePage): JSX.Element {
         )}
 
         {/* 内容 */}
-        <article
-          className='prose'
-          style={{
-            backgroundImage:
-              'repeating-linear-gradient(0deg, #44180099, #44180099 1px, #fff 1px, #fff)',
-            backgroundSize: '2.5rem 2.5rem',
-          }}
-        >
+        <RecipeContent>
           <ReactMarkdown
             children={processedContents}
             rehypePlugins={[rehypeRaw, rehypeSanitize]}
@@ -146,9 +135,50 @@ export function RecipePage(props: recipePage): JSX.Element {
               },
             }}
           />
-        </article>
+        </RecipeContent>
       </div>
     </div>
+  )
+}
+
+/**
+ * カード効果のための背景レイヤーコンポーネント
+ */
+export function CardShadowLayers(): JSX.Element {
+  return (
+    <>
+      <div className='shadow-notepad absolute top-0.5 left-0.5 z-300 h-full w-full rounded-xl bg-white' />
+      <div className='shadow-notepad absolute top-1 left-1 z-200 h-full w-full rounded-xl bg-white' />
+      <div className='shadow-notepad absolute top-1.5 left-1.5 z-100 h-full w-full rounded-xl bg-[url(/images/recipe-card-cover.webp)]' />
+    </>
+  )
+}
+
+/**
+ * ノートパッドのリング部分
+ */
+export function NotePadRing(): JSX.Element {
+  return (
+    <div className='relative -mt-10 mb-10 h-8 w-full bg-[url(/images/recipe-card-ring.svg)] bg-contain bg-repeat-space' />
+  )
+}
+
+export function RecipeContent({
+  children,
+}: {
+  children: JSX.Element
+}): JSX.Element {
+  return (
+    <article
+      className='prose'
+      style={{
+        backgroundImage:
+          'repeating-linear-gradient(0deg, #44180099, #44180099 1px, #fff 1px, #fff)',
+        backgroundSize: '2.5rem 2.5rem',
+      }}
+    >
+      {children}
+    </article>
   )
 }
 
