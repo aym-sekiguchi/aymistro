@@ -55,6 +55,7 @@ export function createMetadata(options: CreateMetadataOptions = {}): Metadata {
       ],
     },
     manifest: '/manifest.json',
+    metadataBase: new URL(defaultBaseUrl),
     openGraph: {
       description,
       images: [
