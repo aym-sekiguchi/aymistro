@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
 
 @theme inline {
   --font-serif: var(--font-zen-old-mincho);
@@ -28,5 +29,69 @@
   }
   .notepad-detail * {
     line-height: 46px !important;
+  }
+
+  /* 投稿全体 */
+  article {
+    @apply !max-w-none !leading-[2.5rem];
+  }
+
+  article * {
+    @apply !m-0 !leading-[2.5rem];
+  }
+
+  /* heading */
+  article h1 {
+    @apply !text-[2em];
+  }
+
+  /* image */
+  article p:has(img) {
+    @apply flex w-full justify-center;
+  }
+  article p img {
+    @apply h-[20rem] object-contain md:h-[25rem];
+  }
+
+  /* video */
+  article p:has(iframe) {
+    @apply !mx-auto flex h-[12.5rem] w-full justify-center md:h-[20rem];
+  }
+
+  /* table */
+  article table {
+    @apply !w-fit outline outline-gray-300;
+  }
+
+  article table * {
+    @apply whitespace-nowrap;
+  }
+
+  article table thead {
+    @apply !border-0;
+  }
+
+  article tbody tr {
+    @apply !border-0 outline-gray-300 odd:outline;
+  }
+
+  article thead tr,
+  article tbody tr {
+    @apply divide-x divide-gray-300;
+  }
+
+  article th,
+  article td {
+    @apply !px-2 !py-0;
+  }
+
+  /* リンク */
+  article a {
+    @apply hover:no-underline;
+  }
+
+  /* トグル */
+  article summary {
+    @apply cursor-pointer;
   }
 }
