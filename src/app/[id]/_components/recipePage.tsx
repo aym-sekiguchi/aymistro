@@ -83,10 +83,14 @@ export function RecipePage(props: recipePage): JSX.Element {
             remarkPlugins={[remarkGfm, remarkBreaks]}
             components={{
               a({ children, href }) {
-                if (children !== 'video') {
+                if (children !== 'video' && href) {
                   return (
                     <Link
-                      href={`/${href?.replace('https://www.notion.so/', '')}`}
+                      href={
+                        href.startsWith('https://www.notion.so/')
+                          ? `/${href.replace('https://www.notion.so/', '')}`
+                          : href
+                      }
                       target='_blank'
                     >
                       {children}
