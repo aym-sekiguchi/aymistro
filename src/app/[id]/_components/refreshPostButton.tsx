@@ -1,6 +1,6 @@
 'use client'
 
-import { type JSX, useState } from 'react'
+import { type JSX, useEffect, useRef, useState } from 'react'
 
 import { revalidatePostPath } from '@/actions'
 
@@ -22,7 +22,13 @@ export function RefreshPostButton({ id }: RefreshPostButtonProps): JSX.Element {
     'idle' | 'processing' | 'completed'
   >('idle')
 
+  const timerRef = useRef<NodeJS.Timeout | null>(null)
+
   const handleRefresh = async (): Promise<void> => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current) // 既存タイマーをクリア
+    }
+
     if (updateStatus === 'processing') return
 
     setUpdateStatus('processing')
@@ -30,9 +36,10 @@ export function RefreshPostButton({ id }: RefreshPostButtonProps): JSX.Element {
       await revalidatePostPath(id)
       setUpdateStatus('completed')
 
-      // 2秒後にボタンを通常状態に戻す
-      setTimeout(() => {
+      // 3秒後にボタンを通常状態に戻す
+      timerRef.current = setTimeout(() => {
         setUpdateStatus('idle')
+        timerRef.current = null
       }, 3000)
     } catch (error) {
       console.error('データの更新開始に失敗しました:', error)
@@ -62,6 +69,15 @@ export function RefreshPostButton({ id }: RefreshPostButtonProps): JSX.Element {
     return null
   }
 
+  // コンポーネントのアンマウント時にクリーンアップ
+  useEffect(() => {
+    return (): void => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current)
+      }
+    }
+  }, [])
+
   /* === return === */
   return (
     <div className='mt-8 flex flex-col items-center justify-center'>
@@ -71,8 +87,11 @@ export function RefreshPostButton({ id }: RefreshPostButtonProps): JSX.Element {
         disabled={updateStatus === 'processing' || updateStatus === 'completed'}
         className={
           'bg-primary flex cursor-pointer items-center gap-2 rounded-full px-4 py-2 text-white shadow-md' +
+          ' ' +
           'transition duration-300 hover:translate-x-0.5 hover:translate-y-0.5 hover:opacity-80 hover:shadow-none' +
+          ' ' +
           'focus:ring-primary focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:outline-none' +
+          ' ' +
           'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-x-0 disabled:hover:translate-y-0'
         }
       >
