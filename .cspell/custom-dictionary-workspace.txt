@@ -1,10 +1,11 @@
 # Custom Dictionary Words
 Aymistro
-Kaisei
 Decol
+Kaisei
 Kaku
 Mincho
 notionhq
 noto
 proptypes
 turbopack
+youtu

@@ -29,6 +29,13 @@ export const getPost = cache(async (options: { id: string }) => {
       mdBlocks.map(async (block) => {
         const result = { ...block }
 
+        if (block && block.type === 'paragraph' && block.parent === '') {
+          return {
+            ...block,
+            parent: '\n', // 空のparagraphを明示的な改行に変換
+          }
+        }
+
         // link_to_pageブロックでなければそのまま返す
         if (!(block.type === 'link_to_page')) return result
 
@@ -66,7 +73,9 @@ export const getPost = cache(async (options: { id: string }) => {
 
     // マークダウン文字列に変換
     const mdString = n2m.toMarkdownString(
-      _mdBlocks.filter((block) => block !== undefined),
+      _mdBlocks.filter((block) => {
+        return block !== undefined
+      }),
     )
 
     // ページのタイトルを取得
@@ -77,7 +86,7 @@ export const getPost = cache(async (options: { id: string }) => {
     // ページの説明を取得
     const description = DescriptionProperty(pages.properties.Description)
       ? pages.properties.Description.rich_text[0].plain_text
-      : 'No Description'
+      : undefined
 
     return {
       contents: mdString.parent,
