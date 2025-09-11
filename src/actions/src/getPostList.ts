@@ -139,7 +139,7 @@ export const getPostList = cache(async (options: GetPostListOptions = {}) => {
           : '',
         id: result.id,
         tags: result.properties.Tags.multi_select.map((tag) => tag.name),
-        title: result.properties.Title.title[0].text.content,
+        title: result.properties.Title.title[0]?.text.content ?? '',
       }
     })
 
