@@ -14,7 +14,7 @@ type CreateMetadataOptions = {
 
 const defaultSiteName = process.env.SITE_TITLE || ''
 
-const defaultBaseUrl = process.env.SITE_URL || ''
+const defaultBaseUrl = process.env.SITE_URL || 'http://localhost:3000'
 
 const defaultImage = {
   alt: '',

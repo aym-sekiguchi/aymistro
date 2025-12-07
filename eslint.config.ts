@@ -76,7 +76,6 @@ export default [
         },
         ecmaVersion: 'latest',
         project: './tsconfig.json',
-        projectService: true,
         sourceType: 'module',
         tsconfigRootDir: import.meta.dirname,
       },
